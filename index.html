@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Carbon Intensity Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <script defer src="script.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- container opener-->
+
+  <div id='grid-container' class="grid-container">
+    <aside>
+       <!-- markup for the menu setting-->
+      <div class="menu">
+        <h2> Select Options </h2>
+        <a>
+          <span class="material-symbols-outlined" id="closebtn">
+            close
+        </a>
+        </span>
+      </div>
+      <div class="MenuOptions">
+        <!-- different options for the aside menu, with checkboxes, allowing to be selected and deselected-->
+        <h3> Current Data and Forecast </h3> <input type="checkbox" id="checkboxone" checked>
+
+        <h3> Generation Mix </h3> <input type="checkbox" id="checkboxtwo" checked>
+        <h3> Show Maximum Data</h3> <input type="checkbox" id="checkboxthree" checked>
+
+      </div>
+
+    </aside>
+
+    <main>
+      <!-- container for the dashboard title-->
+      <div class="Top-container">
+        <div class="closemenu">
+          <a>
+            <span class="material-symbols-outlined" id="menubtn">menu</span>
+          </a>
+          <div class="heading">
+            <h1> Carbon Intensity Dashboard</h1>
+          </div>
+        </div>
+
+      </div>
+<!-- container for the carbon intensity title, below the dashboard-->
+      <div class="currentcarbonintensity">
+        <div class="currentheading">
+          <h2> Current Carbon Intensity Data <span id="carbonintensityinfo" class="material-symbols-outlined" onclick="showDescription()">
+            info
+            </span></h2>
+          <div id="descriptionbox">
+          <p id="descriptioncarbon"> This data is collected from the Carbon Intensity API, which is available <a href="https://carbonintensity.org.uk/">here</a>. It uses gCO2/kWh to measure CO2 production. </p>
+         </div>  
+          
+
+        </div>
+      </div>
+<!-- creation of container for the 'main section and main items, which is then repeated'-->
+      <div id='currentdataforecastcontainer' class="mainsection-container">
+      <div id="currentdataforecast" class="mainsection-item">
+        <h3> Current Data Forecast </h3>
+        <div class="lineGraph">
+          <canvas id="myLineGraph" height="400" width="300"></canvas>
+        </div>
+  
+      </div>
+      <div id="currentgenerationmix" class="mainsection-item">
+        <h3> Current Generation Mix </h3>
+        <div class="pieChartContainer">
+          <canvas id="myPieChart" height="400" width="350"></canvas>
+        </div>
+        <p><i>This pie chart is measured in percentages</i></p>
+      </div>
+      <!-- creation of empty p tags, so that new data can be inserted when javascript runs-->
+      <div id="forecasthigh" class="mainsection-item">
+        <h3> Forecast High and Forecast Low </h3>
+        <h4>Max Carbon Produced today</h4>
+      <p id='1'></p>
+      <p id="2"></p>
+
+      <h4> Current Carbon Production</h4>
+      <p id="3"></p>
+
+      <h4> Forecasted Carbon Prediction</h4>
+      <p id="4"></p>
+
+      <h4> Margin of Error </h4>
+      <p id="5"> </p>
+
+      <p id="6"></p>
+      </div>
+      
+    </div>
+
+    <div class="historicdata">
+      <div class="historicdatatitle">
+      <h2> Historic Data </h2>
+
+      
+      </div>
+
+<!-- repeating of the main section and main container classes, so that they draw upon the same css code-->
+      <div class="mainsection-container">
+        <div class="mainsection-item">
+          <h3> Select Historic Data </h3>
+          
+          <label for="date">Choose a date:</label>
+          <input type="date" id="date" name="date">
+          <!-- creation of button which when runs the function defined in javascript-->
+          <button id='btn' onclick="newData ()">Submit</button>
+          <button id="reset-btn">Reset graphs</button>
+
+
+        </div>
+        <div class="mainsection-item">
+          <h3> Historic Carbon Intensity Data </h3>
+            <canvas id="historicdatagraph"></canvas>
+        </div>
+        
+        <div class="mainsection-item">
+          <h3> Forecast High and Forecast Low </h3>
+          <h4>Max Carbon Produced On this Date</h4>
+          <!--n/a is replaced with javascript data when function is run-->
+        <p id='historic1'>N/A</p>
+        <p id="historic2">N/A</p>
+  
+  
+        </div>
+        
+      </div>
+     
+
+
+    </div>
+
+    </main>
+  </div>
+</body>
+
+</html>
